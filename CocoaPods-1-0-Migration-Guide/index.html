@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--Description-->
+    
+        <meta name="description" content="CocoaPods 1.0 迁移指南[TOC]
+TL;DR
+必须定义targets，之前未定义的话会默认使用第一个target
+定义的target必须表示一个Xcode target
+如果需要表示用在多个target中一系列pods的集合，可以使用abstract_pods，然后在里面添加targe">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="ooops">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="CocoaPods 1.0 迁移指南"/>
+    
+
+    <!--Open Graph Description-->
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="叫点啥好呢"/>
+
+    <!--Type page-->
+    
+        <meta property="og:type" content="article" />
+    
+
+    <!--Page Cover-->
+    
+
+        <meta name="twitter:card" content="summary" />
+    
+
+    <!-- Title -->
+    
+    <title>CocoaPods 1.0 迁移指南 - 叫点啥好呢</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+
+<body>
+
+    <!-- Menu -->
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">叫点啥好呢</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <a href="/">
+                            
+                                Home
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="/archives">
+                            
+                                Archives
+                            
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="https://github.com/ooopscc">
+                            
+                                <i class="fa fa-github fa-stack-2x"></i>
+                            
+                        </a>
+                    </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Main Content -->
+    <!-- Page Header -->
+<!-- Set your background image for this header in your post front-matter: cover -->
+
+<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>CocoaPods 1.0 迁移指南</h1>
+                    
+                    <span class="meta">
+                        <!-- Date and Author -->
+                        
+                        2016-08-05
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+            <!-- Tags and categories -->
+           
+                <div class="col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-1 post-tags">
+                    
+                        
+
+
+<a href="/tags/CocoaPods/">#CocoaPods</a> <a href="/tags/pod/">#pod</a>
+
+
+                    
+                </div>
+                <div class="col-lg-4 col-md-5 post-categories">
+                    
+                </div>
+            
+
+            <!-- Gallery -->
+            
+
+            <!-- Post Main Content -->
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#CocoaPods-1-0-迁移指南"><span class="post-toc-text">CocoaPods 1.0 迁移指南</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#TL-DR"><span class="post-toc-text">TL;DR</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Podfile-变化"><span class="post-toc-text">Podfile 变化</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#必须指明target"><span class="post-toc-text">必须指明target</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#新增abstract-target"><span class="post-toc-text">新增abstract_target</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#exclusive-gt-ture和link-with被移除"><span class="post-toc-text">exclusive => ture和link_with被移除</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#pod的-head被移除"><span class="post-toc-text">pod的:head被移除</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#loca被移除，使用-path代替"><span class="post-toc-text">:loca被移除，使用:path代替</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#xcodeproj被重命名为project"><span class="post-toc-text">xcodeproj被重命名为project</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#CocoaPods-变化"><span class="post-toc-text">CocoaPods 变化</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#完整cloneSepcs仓库，而非之前的shallow-clone"><span class="post-toc-text">完整cloneSepcs仓库，而非之前的shallow clone</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#pod-install不再先更新repo"><span class="post-toc-text">pod install不再先更新repo</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Development-Pods默认不再是unlock状态"><span class="post-toc-text">Development Pods默认不再是unlock状态</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Podspec-变化"><span class="post-toc-text">Podspec 变化</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#platform和deployment-target"><span class="post-toc-text">platform和deployment_target</span></a></li></ol></li></ol></li></ol>
+                <h2 id="CocoaPods-1-0-迁移指南"><a href="#CocoaPods-1-0-迁移指南" class="headerlink" title="CocoaPods 1.0 迁移指南"></a>CocoaPods 1.0 迁移指南</h2><p>[TOC]</p>
+<h3 id="TL-DR"><a href="#TL-DR" class="headerlink" title="TL;DR"></a>TL;DR</h3><ul>
+<li>必须定义<code>targets</code>，之前未定义的话会默认使用第一个target</li>
+<li>定义的<code>target</code>必须表示一个Xcode target</li>
+<li>如果需要表示用在多个target中一系列pods的集合，可以使用<code>abstract_pods</code>，然后在里面添加target和单独的pods。嵌套的target继承外部的pods依赖</li>
+<li>像Tests targets这样，需要知道一个target的pods但又不需要链接(link)的target，可能通过他们的搜索路径来定义继承自外部pods (<code>inherit! :search_paths</code>)</li>
+<li>因为上面的定义，<code>exclusive =&gt; true</code>和<code>link_with</code>被移除</li>
+<li><code>xcodeproj</code>被重命名为<code>project</code>使<a href="https://en.wikipedia.org/wiki/Domain-specific_language" target="_blank" rel="external">DSL</a><a href="如果你写过makefile或者使用CSS设计网页，那么你已经用过DSL了，可以翻译成**特定域语言**。DSL是设计的一种极小又富有表现力的**编程**语言来完成特定任务。">^1</a>词汇保持一致</li>
+<li><code>pod</code>的<code>:head</code>被移除，使用<code>:podspect</code>或者通过<code>git</code>, <code>:svn</code>等直接指定远程repo</li>
+<li>可以在<code>Podfile</code>里通过<code>install!</code>直接指定安装选项 （比如，<code>install! &#39;cocoapods&#39;, :deterministic_uuids =&gt; false, :integrate_targets =&gt; false</code>)</li>
+<li>之前被标记为废弃的DSL属性都被移除了</li>
+<li>引入<code>pod trunk delete</code>和<code>pod trunk deprecate</code></li>
+<li><code>pod search</code>被优化，现在可以搜索私有spec repos了</li>
+<li><code>pod lib lint</code>和<code>pod spec lint</code>会验证pod是否会被实际引入</li>
+</ul>
+<h3 id="Podfile-变化"><a href="#Podfile-变化" class="headerlink" title="Podfile 变化"></a>Podfile 变化</h3><h4 id="必须指明target"><a href="#必须指明target" class="headerlink" title="必须指明target"></a>必须指明<code>target</code></h4><p>之前如果只有一个<code>target</code>，不写也不会有问题，会默认使用那个<code>target</code>。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 之前</span></div><div class="line">platform <span class="symbol">:ios</span>, <span class="string">'7.0'</span></div><div class="line">inhibit_all_warnings!</div><div class="line"></div><div class="line">pod <span class="string">'SDWebImage'</span>,<span class="string">'~&gt; 3.7.1'</span></div><div class="line">pod <span class="string">'SDWebImage/WebP'</span></div><div class="line">pod <span class="string">'libextobjc'</span>, <span class="string">'~&gt; 0.4'</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 之后</span></div><div class="line">platform <span class="symbol">:ios</span>, <span class="string">'7.0'</span></div><div class="line">inhibit_all_warnings!</div><div class="line"></div><div class="line">target <span class="symbol">:mainApp</span> <span class="keyword">do</span></div><div class="line">	pod <span class="string">'SDWebImage'</span>,<span class="string">'~&gt; 3.7.1'</span></div><div class="line">	pod <span class="string">'SDWebImage/WebP'</span></div><div class="line">	pod <span class="string">'libextobjc'</span>, <span class="string">'~&gt; 0.4'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<h4 id="新增abstract-target"><a href="#新增abstract-target" class="headerlink" title="新增abstract_target"></a>新增<code>abstract_target</code></h4><p>在1.0之前，如果有多个target要使用相同的一些pod，大概有3种方法，从low到不low排序是：</p>
+<ol>
+<li><p><strong>每个target都写一遍</strong></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">platform <span class="symbol">:ios</span>, <span class="string">'7.0'</span></div><div class="line">inhibit_all_warnings!</div><div class="line"></div><div class="line">target <span class="symbol">:mainApp</span> <span class="keyword">do</span></div><div class="line">	pod <span class="string">'SDWebImage'</span>,<span class="string">'~&gt; 3.7.1'</span></div><div class="line">	pod <span class="string">'SDWebImage/WebP'</span></div><div class="line">	pod <span class="string">'libextobjc'</span>, <span class="string">'~&gt; 0.4'</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">target <span class="symbol">:subApp</span> <span class="keyword">do</span></div><div class="line">	pod <span class="string">'AFNetworking'</span></div><div class="line">	pod <span class="string">'libextobjc'</span>, <span class="string">'~&gt; 0.4'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><strong><code>link_with</code></strong></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">link_with <span class="string">'mainApp'</span>, <span class="string">'subApp'</span></div><div class="line"></div><div class="line">platform <span class="symbol">:ios</span>, <span class="string">'7.0'</span></div><div class="line">inhibit_all_warnings!</div><div class="line"></div><div class="line">pod <span class="string">'libextobjc'</span>, <span class="string">'~&gt; 0.4'</span></div><div class="line"></div><div class="line">target <span class="symbol">:mainApp</span> <span class="keyword">do</span></div><div class="line">	pod <span class="string">'SDWebImage'</span>,<span class="string">'~&gt; 3.7.1'</span></div><div class="line">	pod <span class="string">'SDWebImage/WebP'</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">target <span class="symbol">:subApp</span> <span class="keyword">do</span></div><div class="line">	pod <span class="string">'AFNetworking'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<pre><code>找遍网上已经找不到完整的示例，这个是我猜测的大概用法。没有亲自尝试，因为实际场景应该不使用这种方式。
+</code></pre></li>
+<li><p><strong>ruby函数def的方式</strong></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">platform <span class="symbol">:ios</span>, <span class="string">'7.0'</span></div><div class="line">inhibit_all_warnings!</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">shared_pods</span></span></div><div class="line">	pod <span class="string">'libextobjc'</span>, <span class="string">'~&gt; 0.4'</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">target <span class="symbol">:mainApp</span> <span class="keyword">do</span></div><div class="line">	shared_pods</div><div class="line">	pod <span class="string">'SDWebImage'</span>,<span class="string">'~&gt; 3.7.1'</span></div><div class="line">	pod <span class="string">'SDWebImage/WebP'</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">target <span class="symbol">:subApp</span> <span class="keyword">do</span></div><div class="line">	shared_pods</div><div class="line">	pod <span class="string">'AFNetworking'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<pre><code>可以说这种解决方式在1.0之前还算是很优雅的，灵活性很高。
+</code></pre></li>
+</ol>
+<p><strong>使用<code>abstract_pods</code>的方式</strong></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 注意: Xcode项目中没有一个叫"Shows"的target</span></div><div class="line">abstract_target <span class="string">'Shows'</span> <span class="keyword">do</span></div><div class="line">  pod <span class="string">'ShowsKit'</span></div><div class="line">  pod <span class="string">'Fabric'</span></div><div class="line"></div><div class="line">  <span class="comment"># ShowsKit + ShowWebAuth</span></div><div class="line">  target <span class="string">'ShowsiOS'</span> <span class="keyword">do</span></div><div class="line">    pod <span class="string">'ShowWebAuth'</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="comment"># ShowsKit + ShowTVAuth</span></div><div class="line">  target <span class="string">'ShowsTV'</span> <span class="keyword">do</span></div><div class="line">    pod <span class="string">'ShowTVAuth'</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<h4 id="exclusive-gt-ture和link-with被移除"><a href="#exclusive-gt-ture和link-with被移除" class="headerlink" title="exclusive =&gt; ture和link_with被移除"></a><code>exclusive =&gt; ture</code>和<code>link_with</code>被移除</h4><p>由于<code>abstract_target</code>的引入，这两个属性的作用就不大了。完全可以使用<code>abstract_target</code>代替。</p>
+<p>在1.0处于beta阶段时，这两个属性就被标记为废弃，在1.0正式版的时候移除。</p>
+<p>如果不了解这两个属性也没有关系，之前没有使用过后面也不会使用了。</p>
+<h4 id="pod的-head被移除"><a href="#pod的-head被移除" class="headerlink" title="pod的:head被移除"></a><code>pod</code>的<code>:head</code>被移除</h4><p>由于会被人误解其本意而被移除，详见<a href="https://github.com/CocoaPods/CocoaPods/issues/4673" target="_blank" rel="external">这个issue。</a></p>
+<h4 id="loca被移除，使用-path代替"><a href="#loca被移除，使用-path代替" class="headerlink" title=":loca被移除，使用:path代替"></a><code>:loca</code>被移除，使用<code>:path</code>代替</h4><h4 id="xcodeproj被重命名为project"><a href="#xcodeproj被重命名为project" class="headerlink" title="xcodeproj被重命名为project"></a><code>xcodeproj</code>被重命名为<code>project</code></h4><h3 id="CocoaPods-变化"><a href="#CocoaPods-变化" class="headerlink" title="CocoaPods 变化"></a>CocoaPods 变化</h3><h4 id="完整cloneSepcs仓库，而非之前的shallow-clone"><a href="#完整cloneSepcs仓库，而非之前的shallow-clone" class="headerlink" title="完整cloneSepcs仓库，而非之前的shallow clone"></a>完整cloneSepcs仓库，而非之前的shallow clone</h4><p>shadllow clone使用<code>git clone</code>加上<code>--depth</code>参数指定只clone特定数目的历史版本。由于此种方式会给git服务器带来额外的压力，所以有此点变化。详情见<a href="https://github.com/CocoaPods/CocoaPods/issues/5016" target="_blank" rel="external">这个issue</a>。</p>
+<p>这样会变得异常慢，我司有CocoaPods官方Specs镜像，所以建议直接使用以加速。</p>
+<h4 id="pod-install不再先更新repo"><a href="#pod-install不再先更新repo" class="headerlink" title="pod install不再先更新repo"></a><code>pod install</code>不再先更新repo</h4><p>在1.0之前，<code>pod install</code>命令会默认先执行<code>pod repo update</code>导致每次<code>pod install</code>会消耗较多时间，想改变以行为需要加上<code>--no-repo-update</code>选项。其实大部分的时候我们并不此默认行为，以至于我直接创建在<code>.zshrc</code>里面创建了一个<code>alias pin=&quot;pod install --no-repo-update&quot;</code>来简化操作。</p>
+<p>现在没有默认的更新行为了，<code>pod install</code>就是直接安装。报错了或者要更新特定版本时再运行<code>pod repo update</code>吧。</p>
+<p>或者你喜欢原来的行为？那么<code>pod install --repo-update</code></p>
+<h4 id="Development-Pods默认不再是unlock状态"><a href="#Development-Pods默认不再是unlock状态" class="headerlink" title="Development Pods默认不再是unlock状态"></a>Development Pods默认不再是unlock状态</h4><p>如果你更改了你的开发中的依赖的约束，并且想覆盖本地锁定的版本，可以手动执行<code>pod update ${DEPENDENCY_NAME}</code></p>
+<h3 id="Podspec-变化"><a href="#Podspec-变化" class="headerlink" title="Podspec 变化"></a>Podspec 变化</h3><h4 id="platform和deployment-target"><a href="#platform和deployment-target" class="headerlink" title="platform和deployment_target"></a><code>platform</code>和<code>deployment_target</code></h4><p>原来的podspec文件中如果有<code>s.ios.platform</code>, <code>s.osx.platform</code>类似的语法，那么在1.0以后的版本会报错：</p>
+<blockquote>
+<p>[!] Invalid <code>WebViewJavascriptBridge.podspec</code> file: undefined method `platform=’ for #<pod::specification::dsl::platformproxy:0x007faee29667f0><br>Did you mean?  platform.</pod::specification::dsl::platformproxy:0x007faee29667f0></p>
+</blockquote>
+<p>这里podspec的变化是移除了<code>.ios.</code>和<code>.osx.</code>，支持单平台直接使用<code>s.platform = :ios, &#39;7.0&#39;</code>的方式，如果支持平台使用新增的<code>s.ios.deployment_target = &#39;7.0&#39;</code>, <code>s.osx.deployment_target = &#39;10.10&#39;</code>的方式。当然也可以使用<code>s.platforms = { :ios =&gt; &#39;7.0&#39;, :osx =&gt; &#39;10.10&#39; }</code>。</p>
+
+
+                
+            </div>
+
+            <!-- Comments -->
+            
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    
+
+
+                </div>
+            
+        </div>
+    </div>
+</article>
+
+    <!-- Footer -->
+    <hr />
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+
+                    
+
+                    
+                        <li>
+                            <a href="https://github.com/ooopscc" target="_blank">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+
+                    
+
+                    
+
+                    
+                </ul>
+                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
+                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+    <!-- After footer scripts -->
+    
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<!-- Gallery -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- Disqus Comments -->
+
+
+
+</body>
+
+</html>

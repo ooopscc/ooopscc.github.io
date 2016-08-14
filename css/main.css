@@ -1548,7 +1548,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #90952d;
+  background: #dbaa90;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2533,4 +2533,14 @@ h6 {
 .posts-expand .post-body h6 + h6 {
   margin-top: 2px;
   padding-top: 2px;
+}
+.post-body {
+  position: relative;
+}
+.post-body .post-more-link {
+  position: absolute;
+  left: 0;
+}
+.posts-expand .post {
+  margin-top: 150px;
 }

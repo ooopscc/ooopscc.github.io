@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="ReactiveCocoa, iOS, RACCommand," />
+  <meta name="keywords" content="iOS,ReactiveCocoa,RACCommand," />
 
 
 
@@ -84,19 +84,22 @@
 
 
 
-<meta name="description" content="RACCommand的基本用法这里不再赘述，只记录一下使用时出现的一个诧异的现象。
-App中定义当服务端接口返回code为一个特定值的时候，表示token失效，客户端应该实现用户直接被登出，显示登录页面">
+<meta name="description" content="RACCommand的基本用法这里不再赘述，此文只记录使用时遇到的一个诧异的现象。
+现象为：某一个ViewModel中的RACCommand实例，在被执行过一次之后就再也不调用了。
+对于涉及用户登录相关功能的App来说，统一处理用户token失效的问题是比较常见的场景。即当某次请求时，服务端接口返回了某个约定的code值，表示需要token，接收到此code时App需要登出用户，并此相应的清理操作">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RACCommand not trigger after execute once">
+<meta property="og:title" content="RACCommand 只执行一次">
 <meta property="og:url" content="http://yoursite.com/RACCommand-not-trigger-after-execute-once/index.html">
 <meta property="og:site_name" content="叫点啥好呢">
-<meta property="og:description" content="RACCommand的基本用法这里不再赘述，只记录一下使用时出现的一个诧异的现象。
-App中定义当服务端接口返回code为一个特定值的时候，表示token失效，客户端应该实现用户直接被登出，显示登录页面">
-<meta property="og:updated_time" content="2016-07-01T04:00:37.000Z">
+<meta property="og:description" content="RACCommand的基本用法这里不再赘述，此文只记录使用时遇到的一个诧异的现象。
+现象为：某一个ViewModel中的RACCommand实例，在被执行过一次之后就再也不调用了。
+对于涉及用户登录相关功能的App来说，统一处理用户token失效的问题是比较常见的场景。即当某次请求时，服务端接口返回了某个约定的code值，表示需要token，接收到此code时App需要登出用户，并此相应的清理操作">
+<meta property="og:updated_time" content="2016-09-10T13:47:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="RACCommand not trigger after execute once">
-<meta name="twitter:description" content="RACCommand的基本用法这里不再赘述，只记录一下使用时出现的一个诧异的现象。
-App中定义当服务端接口返回code为一个特定值的时候，表示token失效，客户端应该实现用户直接被登出，显示登录页面">
+<meta name="twitter:title" content="RACCommand 只执行一次">
+<meta name="twitter:description" content="RACCommand的基本用法这里不再赘述，此文只记录使用时遇到的一个诧异的现象。
+现象为：某一个ViewModel中的RACCommand实例，在被执行过一次之后就再也不调用了。
+对于涉及用户登录相关功能的App来说，统一处理用户token失效的问题是比较常见的场景。即当某次请求时，服务端接口返回了某个约定的code值，表示需要token，接收到此code时App需要登出用户，并此相应的清理操作">
 
 
 
@@ -119,7 +122,7 @@ App中定义当服务端接口返回code为一个特定值的时候，表示toke
 
   <link rel="canonical" href="http://yoursite.com/RACCommand-not-trigger-after-execute-once/"/>
 
-  <title> RACCommand not trigger after execute once | 叫点啥好呢 </title>
+  <title> RACCommand 只执行一次 | 叫点啥好呢 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -239,7 +242,7 @@ App中定义当服务端接口返回code为一个特定值的时候，表示toke
             
             
               
-                RACCommand not trigger after execute once
+                RACCommand 只执行一次
               
             
           </h1>
@@ -286,8 +289,13 @@ App中定义当服务端接口返回code为一个特定值的时候，表示toke
       
 
       
-        <p>RACCommand的基本用法这里不再赘述，只记录一下使用时出现的一个诧异的现象。</p>
-<p>App中定义当服务端接口返回code为一个特定值的时候，表示token失效，客户端应该实现用户直接被登出，显示登录页面</p>
+        <p>RACCommand的基本用法这里不再赘述，此文只记录使用时遇到的一个诧异的现象。</p>
+<p>现象为：某一个ViewModel中的RACCommand实例，在被执行过一次之后就再也不调用了。</p>
+<p>对于涉及用户登录相关功能的App来说，统一处理用户token失效的问题是比较常见的场景。即当某次请求时，服务端接口返回了某个约定的code值，表示需要token，接收到此code时App需要登出用户，并此相应的清理操作。<br>那么失效的信息就可能出现在任一接口的请求中，为此我们正常的处理逻辑是上一层的请求方法中进行统一的处理。<br>举个栗子，我们会发<code>post</code>请求，也会发<code>get</code>请求，假设有下面两个方法:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)postToRelativePath:(<span class="built_in">NSString</span> *)path parameters:(<span class="built_in">NSDictionary</span> *)parameters completion:(<span class="keyword">void</span> (^)(<span class="built_in">NSDictionary</span> *json, <span class="built_in">NSError</span> *error))completion;</div><div class="line">- (<span class="keyword">void</span>)getFromRElativePath:(<span class="built_in">NSString</span> *)path parameters:(<span class="built_in">NSDictionary</span> *)parameters completion:(<span class="keyword">void</span> (^)(<span class="built_in">NSDictionary</span> *json, <span class="built_in">NSError</span> *error))completion;</div></pre></td></tr></table></figure>
+<p>显然在每个方法里都写类似请求方法，并处理回调是很不明智的。所以这里需要这样一个方法：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)requestWithMethod:(HTTPMethod)method toRelativePath:(<span class="built_in">NSString</span> *)path parameters:(<span class="built_in">NSDictionary</span> *)parameters completion:(<span class="keyword">void</span> (^)(<span class="built_in">NSDictionary</span> *json, <span class="built_in">NSError</span> *error))completion;</div></pre></td></tr></table></figure>
+<p>token失效的处理逻辑和请求的具体实现都可以放在这里统一处理，处理完毕后调用completion回调。这样看似一些都很正常。</p>
 
       
     </div>
@@ -310,7 +318,11 @@ App中定义当服务端接口返回code为一个特定值的时候，表示toke
       
         <div class="post-tags">
           
-            <a href="/tags/ReactiveCocoa-iOS-RACCommand/" rel="tag">#ReactiveCocoa, iOS, RACCommand</a>
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/ReactiveCocoa/" rel="tag">#ReactiveCocoa</a>
+          
+            <a href="/tags/RACCommand/" rel="tag">#RACCommand</a>
           
         </div>
       
@@ -400,7 +412,7 @@ App中定义当服务端接口返回code为一个特定值的时候，表示toke
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -410,7 +422,7 @@ App中定义当服务端接口返回code为一个特定值的时候，表示toke
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -560,7 +572,7 @@ App中定义当服务端接口返回code为一个特定值的时候，表示toke
     <script type="text/javascript">
       var disqus_shortname = 'ooopscc';
       var disqus_identifier = 'RACCommand-not-trigger-after-execute-once/';
-      var disqus_title = "RACCommand not trigger after execute once";
+      var disqus_title = "RACCommand 只执行一次";
       var disqus_url = 'http://yoursite.com/RACCommand-not-trigger-after-execute-once/';
 
       function run_disqus_script(disqus_script){

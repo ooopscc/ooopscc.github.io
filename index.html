@@ -235,6 +235,113 @@
             
               
                 
+                <a class="post-title-link" href="/Run-Run-Loop-Run/" itemprop="url">
+                  Run, Run Loop, Run!
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-09T18:40:36+08:00" content="2016-09-09">
+              2016-09-09
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/Run-Run-Loop-Run/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Run-Run-Loop-Run/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p><em>翻译自 <a href="http://bou.io/RunRunLoopRun.html">http://bou.io/RunRunLoopRun.html</a></em></p>
+</blockquote>
+<p>尽管作为所有App最重要的组成部分之一，它仍是一个开发者很少被触及讨论的话题：Run Loop。Run Loop之于app的就像是跳动的心脏，他们是使你app运行的真正奥义。</p>
+<p>事实上，一个run loop（运行循环）最基本的原则非常简单。在iOS和<span class="nowrap">OS X</span><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>，<code>CFRunLoop</code>实现被更高层级发送和分发消息API使用的核心机制。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/Run-Run-Loop-Run/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/CocoaPods-1-0-Migration-Guide/" itemprop="url">
                   CocoaPods 1.0 迁移指南
                 </a>
@@ -450,7 +557,7 @@
               
                 
                 <a class="post-title-link" href="/RACCommand-not-trigger-after-execute-once/" itemprop="url">
-                  RACCommand not trigger after execute once
+                  RACCommand 只执行一次
                 </a>
               
             
@@ -500,8 +607,13 @@
       
         
           
-            <p>RACCommand的基本用法这里不再赘述，只记录一下使用时出现的一个诧异的现象。</p>
-<p>App中定义当服务端接口返回code为一个特定值的时候，表示token失效，客户端应该实现用户直接被登出，显示登录页面</p>
+            <p>RACCommand的基本用法这里不再赘述，此文只记录使用时遇到的一个诧异的现象。</p>
+<p>现象为：某一个ViewModel中的RACCommand实例，在被执行过一次之后就再也不调用了。</p>
+<p>对于涉及用户登录相关功能的App来说，统一处理用户token失效的问题是比较常见的场景。即当某次请求时，服务端接口返回了某个约定的code值，表示需要token，接收到此code时App需要登出用户，并此相应的清理操作。<br>那么失效的信息就可能出现在任一接口的请求中，为此我们正常的处理逻辑是上一层的请求方法中进行统一的处理。<br>举个栗子，我们会发<code>post</code>请求，也会发<code>get</code>请求，假设有下面两个方法:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)postToRelativePath:(<span class="built_in">NSString</span> *)path parameters:(<span class="built_in">NSDictionary</span> *)parameters completion:(<span class="keyword">void</span> (^)(<span class="built_in">NSDictionary</span> *json, <span class="built_in">NSError</span> *error))completion;</div><div class="line">- (<span class="keyword">void</span>)getFromRElativePath:(<span class="built_in">NSString</span> *)path parameters:(<span class="built_in">NSDictionary</span> *)parameters completion:(<span class="keyword">void</span> (^)(<span class="built_in">NSDictionary</span> *json, <span class="built_in">NSError</span> *error))completion;</div></pre></td></tr></table></figure>
+<p>显然在每个方法里都写类似请求方法，并处理回调是很不明智的。所以这里需要这样一个方法：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)requestWithMethod:(HTTPMethod)method toRelativePath:(<span class="built_in">NSString</span> *)path parameters:(<span class="built_in">NSDictionary</span> *)parameters completion:(<span class="keyword">void</span> (^)(<span class="built_in">NSDictionary</span> *json, <span class="built_in">NSError</span> *error))completion;</div></pre></td></tr></table></figure>
+<p>token失效的处理逻辑和请求的具体实现都可以放在这里统一处理，处理完毕后调用completion回调。这样看似一些都很正常。</p>
 
           
         
@@ -571,7 +683,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -581,7 +693,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

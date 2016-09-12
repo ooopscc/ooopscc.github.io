@@ -96,7 +96,7 @@
 
 尽管作为所有App最重要的组成部分之一，它仍是一个开发者很少被触及讨论的话题：Run Loop。Run Loop之于app的就像是跳动的心脏，他们是使你app运行的真正奥义。
 事实上，一个run loop（运行循环）最基本的原则非常简单。在iOS和OS X1，CFRunLoop实现被更高层级发送和分发消息API使用的核心">
-<meta property="og:updated_time" content="2016-09-10T13:50:06.000Z">
+<meta property="og:updated_time" content="2016-09-12T01:50:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Run, Run Loop, Run!">
 <meta name="twitter:description" content="翻译自 http://bou.io/RunRunLoopRun.html
@@ -362,7 +362,7 @@
 <li>检查退出条件：Finished, Stopped, TimedOut, HandledSource</li>
 <li>从头开始</li>
 </ol>
-<p>哟，很简单吧？你可能知道，CoreFoundation是由C实现的，坦率地说看起来并不是很现代。读完我的第一反应就是“哇，这个需要重构”。另一方面，这个代码不仅仅是场景测试，所以我也不指望后面会使用Swift富的重写。</p>
+<p>哟，很简单吧？你可能知道，CoreFoundation是由C实现的，坦率地说看起来并不是很现代。读完我的第一反应就是“哇，这个需要重构”。另一方面，这个代码不仅仅是场景测试，所以我也不指望后面会使用Swift的全部重写。</p>
 <p>这是我这些年用的很多的一个代码模式，尤其是在测试里。它“一直运行直到这个条件变成真”，这是任何一种异步单元测试的基础。随着时间的推移，我可能与了很多它的变体，直接使用NSRunLoop或者CFRunLoop，做轮询，使用超时等等。现在我可以写一个它的像样的版本。我们下一篇文章里面再看～</p>
 <div id="footnotes"><hr><div id="footnotelist"><ol style="list-style:none; padding-left: 0;"><li id="fn:1"><span style="vertical-align: top; padding-right: 10px;">1.</span><span style="vertical-align: top;">我们需要一个苹果系统家族的名字。&quot;Darwin&quot;不太对，因为它是底层系统的名字。OS？</span><a href="#fnref:1" rev="footnote"> ↩</a></li><li id="fn:2"><span style="vertical-align: top; padding-right: 10px;">2.</span><span style="vertical-align: top;">在此之前，我写了很久的Win32代码。</span><a href="#fnref:2" rev="footnote"> ↩</a></li><li id="fn:3"><span style="vertical-align: top; padding-right: 10px;">3.</span><span style="vertical-align: top;">如果你恰好不知道，可以<code>man 2 select</code>。</span><a href="#fnref:3" rev="footnote"> ↩</a></li><li id="fn:4"><span style="vertical-align: top; padding-right: 10px;">4.</span><span style="vertical-align: top;">CFRunLoop.c有3909行，而Looper.java只有309行。</span><a href="#fnref:4" rev="footnote"> ↩</a></li><li id="fn:5"><span style="vertical-align: top; padding-right: 10px;">5.</span><span style="vertical-align: top;">你可以还记得2011年的<a href="https://plus.google.com/u/0/+AndrewMunn/posts/VDkV9XaJRGS" target="_blank" rel="external">这篇文章</a>把iOS上的滚动性能归功于“提升UI线程到一个实时的优先级”。后来被纠正，当然，那只是UITrackingRunLoopMode在完成它的工作。</span><a href="#fnref:5" rev="footnote"> ↩</a></li><li id="fn:6"><span style="vertical-align: top; padding-right: 10px;">6.</span><span style="vertical-align: top;">说实话，我并不是很熟悉GCD的内部实现。我只是猜测它是如何工作的，如果错了请纠正我。</span><a href="#fnref:6" rev="footnote"> ↩</a></li></ol></div></div>
       
@@ -476,7 +476,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

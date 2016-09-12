@@ -503,119 +503,12 @@
 <p><em>翻译自 <a href="https://spin.atomicobject.com/author/bacon/">Patrick Bacon</a>的<a href="https://spin.atomicobject.com/2014/06/29/replay-replaylast-replaylazily/">Comparing replay, replayLast, and replayLazily</a></em></p>
 </blockquote>
 <p>一位同事最近问我关于ReactiveCocoa中<code>replay</code>,<code>replayLast</code>和<code>replayLazily</code>的区别，才发现我只是对它们有一个模糊的理解，并不能把它们的区别解释的很清楚，所以我认为我应该深入了解一下。</p>
-<p>你会发现，如果对<code>RACReplaySubject</code>和<code>RACMulticastConnection</code>没有一个很好的理解的话，只看头文件中的注释还是很难看懂，所以我试图在不涉及的底层的概念的情况下解释一下这几个replay方法。</p>
+<p>你会发现，如果对<code>RACReplaySubject</code>和<code>RACMulticastConnection</code>没有一个很好的理解的话，只看头文件中的注释还是很难看懂，所以我试图在不涉及的底层概念的情况下解释一下这几个replay方法。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/Compare-replay-replayLast-and-replayLazily/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/RACCommand-not-trigger-after-execute-once/" itemprop="url">
-                  RACCommand 只执行一次
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-30T20:46:12+08:00" content="2016-06-30">
-              2016-06-30
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/RACCommand-not-trigger-after-execute-once/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="RACCommand-not-trigger-after-execute-once/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>RACCommand的基本用法这里不再赘述，此文只记录使用时遇到的一个诧异的现象。</p>
-<p>现象为：某一个ViewModel中的RACCommand实例，在被执行过一次之后就再也不调用了。</p>
-<p>对于涉及用户登录相关功能的App来说，统一处理用户token失效的问题是比较常见的场景。即当某次请求时，服务端接口返回了某个约定的code值，表示需要token，接收到此code时App需要登出用户，并此相应的清理操作。<br>那么失效的信息就可能出现在任一接口的请求中，为此我们正常的处理逻辑是上一层的请求方法中进行统一的处理。<br>举个栗子，我们会发<code>post</code>请求，也会发<code>get</code>请求，假设有下面两个方法:</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)postToRelativePath:(<span class="built_in">NSString</span> *)path parameters:(<span class="built_in">NSDictionary</span> *)parameters completion:(<span class="keyword">void</span> (^)(<span class="built_in">NSDictionary</span> *json, <span class="built_in">NSError</span> *error))completion;</div><div class="line">- (<span class="keyword">void</span>)getFromRElativePath:(<span class="built_in">NSString</span> *)path parameters:(<span class="built_in">NSDictionary</span> *)parameters completion:(<span class="keyword">void</span> (^)(<span class="built_in">NSDictionary</span> *json, <span class="built_in">NSError</span> *error))completion;</div></pre></td></tr></table></figure>
-<p>显然在每个方法里都写类似请求方法，并处理回调是很不明智的。所以这里需要这样一个方法：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)requestWithMethod:(HTTPMethod)method toRelativePath:(<span class="built_in">NSString</span> *)path parameters:(<span class="built_in">NSDictionary</span> *)parameters completion:(<span class="keyword">void</span> (^)(<span class="built_in">NSDictionary</span> *json, <span class="built_in">NSError</span> *error))completion;</div></pre></td></tr></table></figure>
-<p>token失效的处理逻辑和请求的具体实现都可以放在这里统一处理，处理完毕后调用completion回调。这样看似一些都很正常。</p>
-
-          
         
       
     </div>
@@ -683,7 +576,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

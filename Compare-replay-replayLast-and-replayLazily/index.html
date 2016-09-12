@@ -103,7 +103,7 @@
 <meta property="og:image" content="https://spin.atomicobject.com/wp-content/uploads/Spin_MarbleChart-03.png">
 <meta property="og:image" content="https://spin.atomicobject.com/wp-content/uploads/Spin_MarbleChart-07.png">
 <meta property="og:image" content="https://spin.atomicobject.com/wp-content/uploads/Spin_MarbleChart-04.png">
-<meta property="og:updated_time" content="2016-09-10T13:51:42.000Z">
+<meta property="og:updated_time" content="2016-09-11T16:10:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="replay, replayLast和replayLazily的区别">
 <meta name="twitter:description" content="翻译自 Patrick Bacon的Comparing replay, replayLast, and replayLazily
@@ -304,9 +304,9 @@
 <p><em>翻译自 <a href="https://spin.atomicobject.com/author/bacon/" target="_blank" rel="external">Patrick Bacon</a>的<a href="https://spin.atomicobject.com/2014/06/29/replay-replaylast-replaylazily/" target="_blank" rel="external">Comparing replay, replayLast, and replayLazily</a></em></p>
 </blockquote>
 <p>一位同事最近问我关于ReactiveCocoa中<code>replay</code>,<code>replayLast</code>和<code>replayLazily</code>的区别，才发现我只是对它们有一个模糊的理解，并不能把它们的区别解释的很清楚，所以我认为我应该深入了解一下。</p>
-<p>你会发现，如果对<code>RACReplaySubject</code>和<code>RACMulticastConnection</code>没有一个很好的理解的话，只看头文件中的注释还是很难看懂，所以我试图在不涉及的底层的概念的情况下解释一下这几个replay方法。</p>
+<p>你会发现，如果对<code>RACReplaySubject</code>和<code>RACMulticastConnection</code>没有一个很好的理解的话，只看头文件中的注释还是很难看懂，所以我试图在不涉及的底层概念的情况下解释一下这几个replay方法。</p>
 <a id="more"></a>
-<h3 id="订阅一个信号"><a href="#订阅一个信号" class="headerlink" title="订阅一个信号"></a>订阅一个信号</h3><p>对于一个“正常的”<code>RACSignal</code>，每个订阅都会signal的<code>didSubscribe</code> block<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>再执行一次，并且subscriber只会接收到在订阅<strong><em>之后</em></strong>发送的值。可能看个例子会更好理解一点。</p>
+<h3 id="订阅一个信号"><a href="#订阅一个信号" class="headerlink" title="订阅一个信号"></a>订阅一个信号</h3><p>对于一个“正常的”<code>RACSignal</code>，每个订阅都会使signal的<code>didSubscribe</code> block<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>再执行一次，并且subscriber只会接收到在订阅<strong><em>之后</em></strong>发送的值。可能看个例子会更好理解一点。</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">__block <span class="keyword">int</span> num = <span class="number">0</span>;</div><div class="line">RACSignal *signal = [RACSignal createSignal:^RACDisposable *(<span class="keyword">id</span>  subscriber) &#123;</div><div class="line">    num++;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Increment num to: %i"</span>, num);</div><div class="line">    [subscriber sendNext:@(num)];</div><div class="line">    <span class="keyword">return</span> <span class="literal">nil</span>;</div><div class="line">&#125;];</div><div class="line"> </div><div class="line"><span class="built_in">NSLog</span>(<span class="string">@"Start subscriptions"</span>);</div><div class="line"> </div><div class="line"><span class="comment">// Subscriber 1 (S1)</span></div><div class="line">[signal subscribeNext:^(<span class="keyword">id</span> x) &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"S1: %@"</span>, x);</div><div class="line">&#125;];</div><div class="line"> </div><div class="line"><span class="comment">// Subscriber 2 (S2)</span></div><div class="line">[signal subscribeNext:^(<span class="keyword">id</span> x) &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"S2: %@"</span>, x);</div><div class="line">&#125;];</div><div class="line"> </div><div class="line"><span class="comment">// Subscriber 3 (S3)</span></div><div class="line">[signal subscribeNext:^(<span class="keyword">id</span> x) &#123;</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"S3: %@"</span>, x);</div><div class="line">&#125;];</div></pre></td></tr></table></figure>
 <p>输出为：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Start subscriptions</div><div class="line">Increment num to: <span class="number">1</span></div><div class="line">S1: <span class="number">1</span></div><div class="line">Increment num to: <span class="number">2</span></div><div class="line">S2: <span class="number">2</span></div><div class="line">Increment num to: <span class="number">3</span></div><div class="line">S3: <span class="number">3</span></div></pre></td></tr></table></figure>
@@ -330,7 +330,7 @@
 <p>结果为：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">Subscribe S1</div><div class="line"> </div><div class="line">Send A</div><div class="line">S1: A</div><div class="line"> </div><div class="line">Send B</div><div class="line">S1: B</div><div class="line"> </div><div class="line">Subscribe S2</div><div class="line">S2: A</div><div class="line">S2: B</div><div class="line"> </div><div class="line">Send C</div><div class="line">S1: C</div><div class="line">S2: C</div><div class="line"> </div><div class="line">Send D</div><div class="line">S1: D</div><div class="line">S2: D</div><div class="line"> </div><div class="line">Subscribe S3</div><div class="line">S3: A</div><div class="line">S3: B</div><div class="line">S3: C</div><div class="line">S3: D</div></pre></td></tr></table></figure>
 <p><img src="https://spin.atomicobject.com/wp-content/uploads/Spin_MarbleChart-01.jpg" alt=""></p>
-<p>这里尽管S3是在所以值发送之后才订阅的，但它仍旧能获得之前的所有值。</p>
+<p>这里尽管S3是在所有值发送之后才订阅的，但它仍旧能获得之前的所有值。</p>
 <h3 id="订阅一个-replayLast信号"><a href="#订阅一个-replayLast信号" class="headerlink" title="订阅一个-replayLast信号"></a>订阅一个<code>-replayLast</code>信号</h3><p><code>-replayLast</code>便捷方法返回一个新的signal，当有subscirber订阅这个新signal的时候，它会直接把源signal最近的一个值发送给subscriber，而不需要重新执行signal的<code>didSubscribe</code> block。同正常的signal一样，这个subscriber会接收到在此之后的值。</p>
 <p>第一个例子中，使用<code>-replayLast</code>和<code>-replay</code>没有任何区别，所以就不再列一遍了。</p>
 <p>第二例子展示最新的值是如何提供给subscriber的。</p>
@@ -388,10 +388,6 @@
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
-            
-              <a href="/RACCommand-not-trigger-after-execute-once/" rel="next" title="RACCommand 只执行一次">
-                <i class="fa fa-chevron-left"></i> RACCommand 只执行一次
-              </a>
             
           </div>
 
@@ -474,7 +470,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

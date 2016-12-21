@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="小技巧,Chrome," />
 
 
 
@@ -84,12 +84,24 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="叫点啥好呢">
-<meta property="og:url" content="http://yoursite.com/archives/2016/08/index.html">
+<meta name="description" content="Chrome有一个很好又不太好的功能，就是omnibar上的自动补全网址。
+经常使用Chrome的人可能会遇到这样一个情形：
+Chrome给补全的网址不是我们期望的，往往在下面的位置。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="删除某条Chrome自动补全的网址记录">
+<meta property="og:url" content="http://yoursite.com/Delete-Chrome-autocomplete-url-candidates/index.html">
 <meta property="og:site_name" content="叫点啥好呢">
+<meta property="og:description" content="Chrome有一个很好又不太好的功能，就是omnibar上的自动补全网址。
+经常使用Chrome的人可能会遇到这样一个情形：
+Chrome给补全的网址不是我们期望的，往往在下面的位置。">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/7e921c39jw1fayd7kh394j20tx05btbu.jpg">
+<meta property="og:updated_time" content="2016-12-21T06:00:36.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="叫点啥好呢">
+<meta name="twitter:title" content="删除某条Chrome自动补全的网址记录">
+<meta name="twitter:description" content="Chrome有一个很好又不太好的功能，就是omnibar上的自动补全网址。
+经常使用Chrome的人可能会遇到这样一个情形：
+Chrome给补全的网址不是我们期望的，往往在下面的位置。">
+<meta name="twitter:image" content="http://ww2.sinaimg.cn/large/7e921c39jw1fayd7kh394j20tx05btbu.jpg">
 
 
 
@@ -110,9 +122,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2016/08/"/>
+  <link rel="canonical" href="http://yoursite.com/Delete-Chrome-autocomplete-url-candidates/"/>
 
-  <title> 归档 | 叫点啥好呢 </title>
+  <title> 删除某条Chrome自动补全的网址记录 | 叫点啥好呢 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -133,7 +145,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -211,66 +223,147 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 4 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
 
-      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                删除某条Chrome自动补全的网址记录
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-21T13:09:05+08:00" content="2016-12-21">
+              2016-12-21
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/Delete-Chrome-autocomplete-url-candidates/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Delete-Chrome-autocomplete-url-candidates/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
       
       
 
       
+        <p>Chrome有一个很好又不太好的功能，就是omnibar上的自动补全网址。</p>
+<p>经常使用Chrome的人可能会遇到这样一个情形：</p>
+<p>Chrome给补全的网址不是我们期望的，往往在下面的位置。</p>
+<a id="more"></a>
+<p>比如下面这样：</p>
+<p><img src="http://ww2.sinaimg.cn/large/7e921c39jw1fayd7kh394j20tx05btbu.jpg" alt=""></p>
+<ul>
+<li>我提了一个PR，希望输入关键字<code>github</code>时可以自动补全到第三个，敲回车就可以直达了。</li>
+<li>又或者我这个PR合入了，自动补全时不希望再出现此条目。</li>
+</ul>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>此时通过通过<code>shift + fn + delete</code>（Mac），<code>shift + alt + delete</code>（Windows/Linux）进行删除，操作步骤如下：</p>
+<ol>
+<li>输入关键字</li>
+<li>用上下键选中待删除的一条记录</li>
+<li>按上面的组合键</li>
+<li>没了</li>
+</ol>
+
+      
+    </div>
+
+    <div>
+      
         
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/小技巧/" rel="tag">#小技巧</a>
+          
+            <a href="/tags/Chrome/" rel="tag">#Chrome</a>
+          
         </div>
       
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Run-Run-Loop-Run/" rel="next" title="Run, Run Loop, Run!">
+                <i class="fa fa-chevron-left"></i> Run, Run Loop, Run!
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
       
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/CocoaPods-1-0-Migration-Guide/" itemprop="url">
-              
-                <span itemprop="name">CocoaPods 1.0 迁移指南</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-05T10:35:09+08:00"
-              content="2016-08-05" >
-          08-05
-        </time>
-      </div>
-
-    </header>
+      
+    </footer>
   </article>
 
 
 
-    
-
-  </section>
-
-  
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -278,6 +371,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -297,8 +401,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -341,6 +454,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法"><span class="nav-number">1.</span> <span class="nav-text">解决方法</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -437,11 +561,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
 
 
   
@@ -459,9 +581,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'ooopscc';
-      var disqus_identifier = 'archives/2016/08/index.html';
-      var disqus_title = "";
-      var disqus_url = '';
+      var disqus_identifier = 'Delete-Chrome-autocomplete-url-candidates/';
+      var disqus_title = "删除某条Chrome自动补全的网址记录";
+      var disqus_url = 'http://yoursite.com/Delete-Chrome-autocomplete-url-candidates/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
@@ -472,6 +594,8 @@
       }
 
       run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
       
     </script>
   

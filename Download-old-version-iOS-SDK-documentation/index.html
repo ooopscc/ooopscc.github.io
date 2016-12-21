@@ -1,0 +1,631 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,小技巧," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="众所周知，苹果是一个“极度激进”的公司，发布iOS10，就想让你放弃iOS9。可国内的现状是想摆脱iOS8都困难，不支持iOS7都会是一个很艰难的决定。同时，升级Xcode会把旧版本的开发文档移除，开发者只能乖乖地下载新版文档。
+不知道是不是我的需求有些奇葩，我竟然想要找旧版本的iOS开发文档，如iOS8。不过难免会有这方面的需求，遇到问题毫不退缩迎难而上，是RD的基本素养。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="下载老版本iOS SDK开发文档">
+<meta property="og:url" content="http://yoursite.com/Download-old-version-iOS-SDK-documentation/index.html">
+<meta property="og:site_name" content="叫点啥好呢">
+<meta property="og:description" content="众所周知，苹果是一个“极度激进”的公司，发布iOS10，就想让你放弃iOS9。可国内的现状是想摆脱iOS8都困难，不支持iOS7都会是一个很艰难的决定。同时，升级Xcode会把旧版本的开发文档移除，开发者只能乖乖地下载新版文档。
+不知道是不是我的需求有些奇葩，我竟然想要找旧版本的iOS开发文档，如iOS8。不过难免会有这方面的需求，遇到问题毫不退缩迎难而上，是RD的基本素养。">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/7e921c39gw1fayun5r4twj210y0i441o.jpg">
+<meta property="og:updated_time" content="2016-12-21T17:26:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="下载老版本iOS SDK开发文档">
+<meta name="twitter:description" content="众所周知，苹果是一个“极度激进”的公司，发布iOS10，就想让你放弃iOS9。可国内的现状是想摆脱iOS8都困难，不支持iOS7都会是一个很艰难的决定。同时，升级Xcode会把旧版本的开发文档移除，开发者只能乖乖地下载新版文档。
+不知道是不是我的需求有些奇葩，我竟然想要找旧版本的iOS开发文档，如iOS8。不过难免会有这方面的需求，遇到问题毫不退缩迎难而上，是RD的基本素养。">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/7e921c39gw1fayun5r4twj210y0i441o.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/Download-old-version-iOS-SDK-documentation/"/>
+
+  <title> 下载老版本iOS SDK开发文档 | 叫点啥好呢 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">叫点啥好呢</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                下载老版本iOS SDK开发文档
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-21T22:53:29+08:00" content="2016-12-21">
+              2016-12-21
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/Download-old-version-iOS-SDK-documentation/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Download-old-version-iOS-SDK-documentation/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>众所周知，苹果是一个“极度激进”的公司，发布iOS10，就想让你放弃iOS9。可国内的现状是想摆脱iOS8都困难，不支持iOS7都会是一个很艰难的决定。同时，升级Xcode会把旧版本的开发文档移除，开发者只能乖乖地下载新版文档。</p>
+<p>不知道是不是我的需求有些奇葩，我竟然想要找旧版本的iOS开发文档，如iOS8。不过难免会有这方面的需求，遇到问题毫不退缩迎难而上，是RD的基本素养。<a id="more"></a><span style="color: #ccc">（喂，自夸也要有个限度啊）</span></p>
+<h3 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h3><ul>
+<li><p>Dash</p>
+<p>Dash是Mac上非常优秀的API文档查看软件，集成了150+种语言和框架的开发文档，主打即时搜索离线文档，效率利器。售价$24.99，略贵，但也很公道。</p>
+<p>前段时间苹果把Dash各平台的app都做了下架处理，所以如果需要购买可以去官网。对此事件稍微有些了解，双方各执一词，不多作评价。但这丝毫不影响Dash是一款非常棒的应用。</p>
+<p>需要Dash主要是因为我们可以把下载下来的旧版本docset放到目标位置，让dash可以扫描到并加载，我们使用Dash进行文档的查看，Xcode已经指望不上了。</p>
+</li>
+<li><p>BetterZip</p>
+<p>有个功能类似于WinRAR，可以在解压之前查看压缩的内部文件列表。嗯，仅此而已。没有也可以。不过我不喜欢把几百M的压缩包解压完再看对比里面的东西是不是如预期。</p>
+</li>
+</ul>
+<h3 id="探索"><a href="#探索" class="headerlink" title="探索"></a>探索</h3><p>Google了一段时间，换了各种关键字，终于从<a href="http://useyourloaf.com/blog/downloading-old-ios-sdk-documentation/" target="_blank" rel="external">Downloading Old iOS SDK Documentation</a>的评论中找到一些线索。该篇博文由于时代久远信息陈旧放到Xcode8.0的现在已不适用，不过评论还是有新鲜的。</p>
+<blockquote>
+<p><img src="http://ww1.sinaimg.cn/large/7e921c39gw1fayun5r4twj210y0i441o.jpg" alt=""></p>
+</blockquote>
+<p>Big Will给出的两个链接均是devimages.apple.com域的，并依然可用，下载下来是dmg格式的。于是发散思维，转而去寻找dmg格式历史文档了。</p>
+<p>上面给出的链接为：<a href="http://devimages.apple.com/docsets/20131022/031-1317-A.dmg" target="_blank" rel="external">http://devimages.apple.com/docsets/20131022/031-1317-A.dmg</a></p>
+<p>搜索关键字：devimages.apple.com，docset，2014</p>
+<p>因为我要找iOS8的文档。</p>
+<p>Google结果第一条：</p>
+<p><a href="https://developer.apple.com/library/downloads/docset-index.dvtdownloadableindex" target="_blank" rel="external">https://developer.apple.com/library/downloads/docset-index.dvtdownloadableindex</a></p>
+<p>就是它了，是一个xml格式的文件。截取iOS8相关部分：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- START iOS 8 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dict</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>fileSize<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">integer</span>&gt;</span>438780988<span class="tag">&lt;/<span class="name">integer</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>identifier<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">string</span>&gt;</span>com.apple.adc.documentation.AppleiOS8.0.iOSLibrary<span class="tag">&lt;/<span class="name">string</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>name<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">string</span>&gt;</span>iOS 8<span class="tag">&lt;/<span class="name">string</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>source<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">string</span>&gt;</span>https://devimages.apple.com.edgekey.net/docsets/20140917/031-06020-A.dmg<span class="tag">&lt;/<span class="name">string</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>userInfo<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>倒数第二行的<code>&lt;string&gt;</code>标签内的链接就是我们要找的dmg API文档了。</p>
+<p>加载dmg文件，使用BetterZip查看里面的文件，是pkg。</p>
+<p>不过凭程序员的直觉，这个pkg也不过是个zip文件，改后缀果然能解压。</p>
+<p>继续改后缀，解压，改后缀，解压，然后就得到了我们熟悉的<code>.docset</code>文档。</p>
+<p>简易流程图：<span style="color: #ccc">（懒癌晚期，就不分别截图了）</span></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">031-06020-A.dmg -&gt; </div><div class="line">iOSDocset.pkg 	--rename--&gt;  iOSDocset.zip 	-&gt; </div><div class="line">Payload 		--rename--&gt;  Payload.zip 	-&gt; </div><div class="line">Payload 		--rename--&gt;  Payload.zip 	-&gt; # 没错，包了两层</div><div class="line">com.apple.adc.documentation.AppleiOS8.0.iOSLibrary.docset</div></pre></td></tr></table></figure>
+<p>接下来把docset文件放入</p>
+<p><code>~/Library/Developer/Shared/Documentation/DocSets/</code></p>
+<p>进入Dash的设置Docsets，点rescan就会搜索到新加入的API文档。然后Do whatever you want。</p>
+<h3 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h3><p>下面对 docset-index.dvtdownloadableindex 做一个备份：</p>
+<a href="/Download-old-version-iOS-SDK-documentation/docset-index.dvtdownloadableindex" title="docset-index.dvtdownloadableindex">docset-index.dvtdownloadableindex</a>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/小技巧/" rel="tag">#小技巧</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Delete-Chrome-autocomplete-url-candidates/" rel="next" title="删除某条Chrome自动补全的网址记录">
+                <i class="fa fa-chevron-left"></i> 删除某条Chrome自动补全的网址记录
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="ooops" />
+          <p class="site-author-name" itemprop="name">ooops</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#工具准备"><span class="nav-number">1.</span> <span class="nav-text">工具准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#探索"><span class="nav-number">2.</span> <span class="nav-text">探索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#备份"><span class="nav-number">3.</span> <span class="nav-text">备份</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ooops</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'ooopscc';
+      var disqus_identifier = 'Download-old-version-iOS-SDK-documentation/';
+      var disqus_title = "下载老版本iOS SDK开发文档";
+      var disqus_url = 'http://yoursite.com/Download-old-version-iOS-SDK-documentation/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

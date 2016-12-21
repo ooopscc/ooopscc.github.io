@@ -93,7 +93,7 @@
 <meta property="og:description" content="众所周知，苹果是一个“极度激进”的公司，发布iOS10，就想让你放弃iOS9。可国内的现状是想摆脱iOS8都困难，不支持iOS7都会是一个很艰难的决定。同时，升级Xcode会把旧版本的开发文档移除，开发者只能乖乖地下载新版文档。
 不知道是不是我的需求有些奇葩，我竟然想要找旧版本的iOS开发文档，如iOS8。不过难免会有这方面的需求，遇到问题毫不退缩迎难而上，是RD的基本素养。">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/7e921c39gw1fayun5r4twj210y0i441o.jpg">
-<meta property="og:updated_time" content="2016-12-21T17:26:57.000Z">
+<meta property="og:updated_time" content="2016-12-21T17:35:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="下载老版本iOS SDK开发文档">
 <meta name="twitter:description" content="众所周知，苹果是一个“极度激进”的公司，发布iOS10，就想让你放弃iOS9。可国内的现状是想摆脱iOS8都困难，不支持iOS7都会是一个很艰难的决定。同时，升级Xcode会把旧版本的开发文档移除，开发者只能乖乖地下载新版文档。
@@ -317,7 +317,7 @@
 <p>不过凭程序员的直觉，这个pkg也不过是个zip文件，改后缀果然能解压。</p>
 <p>继续改后缀，解压，改后缀，解压，然后就得到了我们熟悉的<code>.docset</code>文档。</p>
 <p>简易流程图：<span style="color: #ccc">（懒癌晚期，就不分别截图了）</span></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">031-06020-A.dmg -&gt; </div><div class="line">iOSDocset.pkg 	--rename--&gt;  iOSDocset.zip 	-&gt; </div><div class="line">Payload 		--rename--&gt;  Payload.zip 	-&gt; </div><div class="line">Payload 		--rename--&gt;  Payload.zip 	-&gt; # 没错，包了两层</div><div class="line">com.apple.adc.documentation.AppleiOS8.0.iOSLibrary.docset</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">031-06020-A.dmg -&gt; </div><div class="line">iOSDocset.pkg		--rename--&gt;  iOSDocset.zip 	-&gt; </div><div class="line">Payload 		--rename--&gt;  Payload.zip 	-&gt; </div><div class="line">Payload 		--rename--&gt;  Payload.zip 	-&gt; # 没错，包了两层</div><div class="line">com.apple.adc.documentation.AppleiOS8.0.iOSLibrary.docset</div></pre></td></tr></table></figure>
 <p>接下来把docset文件放入</p>
 <p><code>~/Library/Developer/Shared/Documentation/DocSets/</code></p>
 <p>进入Dash的设置Docsets，点rescan就会搜索到新加入的API文档。然后Do whatever you want。</p>
